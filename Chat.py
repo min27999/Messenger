@@ -16,13 +16,12 @@ class WindowClass(QMainWindow, form_class) :
         self.Login_Button.clicked.connect(self.Login_function)
         self.Search_Button.clicked.connect(self.Search_function)
         self.Join_Button.clicked.connect(self.Join_function)
-        self.Chat_Chart.currentIndexChanged.connect(self.ChatChart_function)
-        self.Chat_Object.currentIndexChanged.connect(self.ChartObject_function)
 
     def Send_function(self):
         self.text = self.Chat_Block.toPlainText()
         print(self.Chat_Area.append(self.text))
         print(self.Chat_Area.append(""))
+        self.Chat_Block.clear()
 
     def Login_function(self):
         NickName = open("NickName.dat")
@@ -37,38 +36,43 @@ class WindowClass(QMainWindow, form_class) :
                 print(self.NickName.clear())
                 print(self.NickName.setText(self.NickName_Text))
 
-    def ChatChart_function(self):
-        self.Chat_Area.clear()
-        self.Chat_Name.clear()
-        self.Chat_Block.clear()
-        self.chat_name = self.Chat_Chart.currentText()
-        print(self.Chat_Name.setText(self.chat_name))
-
     def Search_function(self):
-        Search = open("Search.dat")
+        self.Chat_Room = open("Chat_Room.dat")
+        self.chat_name = self.ChatRoom_Block.text()
+        for self.i in self.Chat_Room:
+            self.Chat_Chart = self.i.split()
+
+        self.Search = open("Search.dat", "r")
+        self.Search_Plus = open("Chat_Room.dat", "a")
         self.Search_Text = self.Search_Block.text()
-        self.Search_Chart = []
-        self.Search_index = []
 
-        for self.i in Search:
-            self.Search_Chart.append(self.i.split(", "))
-            # print(self.Search_Chart)
+        for self.i in self.Search:
+            self.Search_Chart = self.i.split()
 
-            for self.Word in self.Search_Chart:
-                if self.Search_Text in self.Word:
-                    self.Search_index.append(self.Search_Chart.index(self.Word))
-                    # print(self.Search_index)
-
-        for self.j in self.Search_index:
-            # print(self.j)
-            self.Chat_Object.addItem(self.Search_Chart[self.j])
-
-
-    def ChartObject_function(self):
-        return
-
+        if self.Search_Text in self.Chat_Chart:
+                print(self.Search_Fin.setText("이미 있는 채팅방입니다."))
+        else:
+            if self.Search_Text in self.Search_Chart:
+                self.Search_Plus.write(" ")
+                self.Search_Plus.write(self.Search_Text)
+                print(self.Search_Fin.setText("방이 추가되었습니다."))
+                self.Search_Block.clear() #여기서 버튼을 한번 더 누르거나 해야만 Chat_Room.dat에 추가 됨 버튼만 눌러서는 추가가 되지 않음.
+            else:
+                print(self.Search_Fin.setText("방 제목을 다시 입력하십시오."))
     def Join_function(self):
-        print("가입 완료")
+        self.Chat_Room = open("Chat_Room.dat")
+        self.chat_name = self.ChatRoom_Block.text()
+        for self.i in self.Chat_Room:
+            self.Chat_Chart = self.i.split()
+
+        if self.chat_name in self.Chat_Chart:
+            self.Chat_Area.clear()
+            self.Chat_Name.clear()
+            self.Chat_Block.clear()
+            print(self.Chat_Name.setText(self.chat_name))
+        else:
+            self.ChatRoom_Block.clear()
+            print(self.Chat_Name.setText("방 제목을 다시 입력하십시오."))
 
 if __name__ == "__main__" :
     #QApplication : 프로그램을 실행시켜주는 클래스
