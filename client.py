@@ -65,5 +65,7 @@ class Client(QThread):
             resp = self.get_response()
             if resp:
                 msg = resp.strip().split(":")
+                if msg[-1][0] == '#':
+                    continue
                 msg = "<{}> {}".format(msg[1].split("!")[0], msg[-1].strip())
                 self.chattingChanged.emit(msg)
