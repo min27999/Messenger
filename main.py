@@ -1,8 +1,9 @@
 import sys
 from PyQt5.QtWidgets import QApplication
-from GUI import GUI
-# Test
+from chat import MainWindow
+
 app = QApplication(sys.argv)
-chattings = ['Music', 'Movie', 'Animal', 'Tech']
-gui = GUI(chattings)
-sys.exit(app.exec_())
+
+myWindow = MainWindow()
+
+app.exec_()
