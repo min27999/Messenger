@@ -36,7 +36,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="buttonSearch">
+  <widget class="QPushButton" name="buttonKeywordSet">
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -46,7 +46,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Search</string>
+    <string>set</string>
    </property>
   </widget>
   <widget class="QPushButton" name="buttonLogin">
@@ -111,7 +111,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLineEdit" name="inputSearch">
+  <widget class="QLineEdit" name="inputKeyword">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -131,7 +131,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="Search_Fin">
+  <widget class="QLineEdit" name="setKeyword">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -165,6 +165,19 @@
    </property>
    <property name="text">
     <string>Channel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buttonKeywordClear">
+   <property name="geometry">
+    <rect>
+     <x>82</x>
+     <y>430</y>
+     <width>111</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>keyword clear</string>
    </property>
   </widget>
  </widget>
